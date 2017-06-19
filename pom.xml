@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>Jdo-mysql</groupId>
+    <artifactId>Jdo-mysql</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    
+    <properties>
+        <datanucleus.core.version>5.1.0-m3</datanucleus.core.version>
+    </properties>
+
+    <dependencies>
+         <!-- https://mvnrepository.com/artifact/org.datanucleus/datanucleus-java8 -->
+         <dependency>
+            <groupId>org.datanucleus</groupId>
+            <artifactId>datanucleus-java8</artifactId>
+            <version>4.2.3</version>
+         </dependency>
+         <!-- https://mvnrepository.com/artifact/org.datanucleus/datanucleus-maven-plugin -->
+         <dependency>
+            <groupId>org.datanucleus</groupId>
+            <artifactId>datanucleus-maven-plugin</artifactId>
+            <version>5.0.2</version>
+         </dependency>
+        <dependency>
+            <groupId>javax.jdo</groupId>
+            <artifactId>jdo-api</artifactId>
+            <version>3.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.datanucleus</groupId>
+            <artifactId>javax.jdo</artifactId>
+            <version>3.2.0-m7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.datanucleus</groupId>
+            <artifactId>datanucleus-core</artifactId>
+            <version>${datanucleus.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.datanucleus</groupId>
+            <artifactId>datanucleus-api-jdo</artifactId>
+            <version>5.1.0-m3</version>
+        </dependency>
+       <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+      <dependency>
+           <groupId>mysql</groupId>
+           <artifactId>mysql-connector-java</artifactId>
+           <version>6.0.6</version>
+       </dependency>
+       <!-- https://mvnrepository.com/artifact/org.datanucleus/datanucleus-rdbms -->
+       <dependency>
+           <groupId>org.datanucleus</groupId>
+           <artifactId>datanucleus-rdbms</artifactId>
+           <version>5.1.0-m3</version>
+       </dependency>
+        </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
+                    <executable>${env.JAVA_HOME}/bin/javac</executable>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.datanucleus</groupId>
+                <artifactId>datanucleus-maven-plugin</artifactId>
+                <version>5.0.2</version>
+                <configuration>
+                    <api>JDO</api>
+                    <log4jConfiguration>${basedir}/src/main/log4j.properties</log4jConfiguration>
+                    <props>${basedir}/src/main/resources/datanucleus.properties</props>
+                    <verbose>true</verbose>
+                    <targetDirectory>${basedir}/target/classes/</targetDirectory>
+                    <persistenceUnitName>JDO_TUTORIAL</persistenceUnitName>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.datanucleus</groupId>
+                        <artifactId>datanucleus-core</artifactId>
+                        <version>${datanucleus.core.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>
